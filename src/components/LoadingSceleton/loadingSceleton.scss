@@ -1,0 +1,155 @@
+$common-padding: 24px;
+$card-height: 340px;
+$card-width: 280px;
+$repos-width: 780px;
+$repos-height: 340px;
+
+$avatar-size: 100px;
+$avatar-position: ($card-width/2-$avatar-size/2) $common-padding;
+
+$repo-padding: $common-padding;
+$repo-height: ($repos-width - $repo-padding*4)/3;
+$repo-width: ($repos-width - $repo-padding*4)/3;
+$repo-position-1: $repo-padding $common-padding;
+$repo-position-2: ($repo-width + $repo-padding*2) $common-padding;
+$repo-position-3: ($repo-width*2 + $repo-padding*3) $common-padding;
+
+$desc-line-height: 16px;
+$desc-line-width:230px;
+$desc-line-position-1: $common-padding 240px;
+$desc-line-position-2: $common-padding 200px;
+$desc-line-position-3: $common-padding 160px;
+
+$footer-height: 40px;
+$footer-position: 0 calc(#{$card-height} - #{$footer-height});
+
+$blur-width: 200px;
+$blur-size: $blur-width calc(#{$card-height} - #{$footer-height});
+
+.sceleton {
+  padding: $common-padding;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.sceletonElement {
+  margin: 0 10px;
+}
+
+.userPlate {
+  width: $card-width;
+  height: $card-height;
+
+  &::after {
+    content:"";
+    display:block;
+    width: 100%;
+    height: 100%;
+    border-radius:6px;
+    box-shadow: 0 10px 45px rgba(0,0,0, .1);
+
+    background-image: linear-gradient(
+          90deg,
+          rgba(lightgrey, 0) 0,
+          rgba(lightgrey, .8) 50%,
+          rgba(lightgrey, 0) 100%
+      ),
+      linear-gradient(white $desc-line-height, transparent 0),
+      linear-gradient(white $desc-line-height, transparent 0),
+      linear-gradient(white $desc-line-height, transparent 0),
+      radial-gradient(circle ($avatar-size/2) at center, white 99%, transparent 0),
+      linear-gradient(white $footer-height, transparent 0),
+      linear-gradient(lightgrey $card-height, transparent 0);
+
+    background-size:
+      $blur-size,
+      $desc-line-width $desc-line-height,
+      $desc-line-width $desc-line-height,
+      $desc-line-width $desc-line-height,
+      $avatar-size $avatar-size,
+      100% $footer-height,
+      100% 100%;
+
+    background-position:
+      -150% 0,
+      $desc-line-position-1,
+      $desc-line-position-2,
+      $desc-line-position-3,
+      $avatar-position,
+      $footer-position,
+      0 0;
+
+    background-repeat: no-repeat;
+    animation: loading 1.5s infinite;
+  }
+}
+
+.reposPlate {
+  width: $repos-width;
+  height: $repos-height;
+
+  &::after {
+    content:"";
+    display:block;
+    width: 100%;
+    height: 100%;
+    border-radius:6px;
+    box-shadow: 0 10px 45px rgba(0,0,0, .1);
+
+    background-image: linear-gradient(
+        90deg,
+        rgba(lightgrey, 0) 0,
+        rgba(lightgrey, .8) 50%,
+        rgba(lightgrey, 0) 100%
+    ),
+    linear-gradient(white $repo-height, transparent 0),
+    linear-gradient(white $repo-height, transparent 0),
+    linear-gradient(white $repo-height, transparent 0),
+    linear-gradient(lightgrey $card-height, transparent 0);
+
+    background-size:
+      $blur-size,
+      $repo-width $repo-height,
+      $repo-width $repo-height,
+      $repo-width $repo-height,
+      100% 100%;
+
+    background-position:
+      -150% 0,
+      $repo-position-1,
+      $repo-position-2,
+      $repo-position-3,
+      0 0;
+
+    background-repeat: no-repeat;
+    animation: repoLoading 1.5s infinite;
+  }
+}
+
+@keyframes loading {
+  to {
+    background-position:
+      350% 0,
+      $desc-line-position-1,
+      $desc-line-position-2,
+      $desc-line-position-3,
+      $avatar-position,
+      $footer-position,
+      0 0;
+  }
+}
+
+
+@keyframes repoLoading {
+  to {
+    background-position:
+      350% 0,
+      $repo-position-1,
+      $repo-position-2,
+      $repo-position-3,
+      0 0;
+  }
+}
+
