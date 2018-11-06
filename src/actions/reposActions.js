@@ -1,12 +1,22 @@
-import {SET_REPOS} from 'constants/actionTypes'
+import {REPOS_FETCHING} from '../constants/actionTypes'
 
 export function getRepos () {
   return (dispatch) => {
-    setTimeout(() => {
+    dispatch({
+      type: REPOS_FETCHING.START
+    })
+    try {
+      setTimeout(() => {
+        dispatch({
+          type: REPOS_FETCHING.SUCCESS,
+          payload: require('./repos.json')
+        })
+      }, 1000)
+    } catch (e) {
       dispatch({
-        type: SET_REPOS,
-        payload: require('./repos.json')
+        type: REPOS_FETCHING.FAIL,
+        payload: e
       })
-    }, 1000)
+    }
   }
 }

@@ -1,12 +1,22 @@
-import {SET_EVENTS} from 'constants/actionTypes'
+import {EVENTS_FETCHING} from '../constants/actionTypes'
 
 export function getEvents () {
   return (dispatch) => {
-    setTimeout(() => {
+    dispatch({
+      type: EVENTS_FETCHING.START
+    })
+    try {
+      setTimeout(() => {
+        dispatch({
+          type: EVENTS_FETCHING.SUCCESS,
+          payload: require('./events.json')
+        })
+      }, 1000)
+    } catch (e) {
       dispatch({
-        type: SET_EVENTS,
-        payload: require('./events.json')
+        type: EVENTS_FETCHING.FAIL,
+        payload: e
       })
-    }, 1500)
+    }
   }
 }

@@ -4,12 +4,14 @@
   "private": true,
   "dependencies": {
     "cc-react-scripts": "1.5.2",
+    "gsap": "2.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "reset-css": "4.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -26,6 +28,7 @@
     "redux-logger": "^3.0.6",
     "source-map-explorer": "^1.5.0",
     "webpack": "^3.10.0",
+    "webpack-dashboard": "2.0.0",
     "webpack-dev-server": "^2.7.1"
   }
 }
