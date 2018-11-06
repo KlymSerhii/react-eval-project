@@ -1,4 +1,4 @@
-import './app.scss'
+import './home.scss'
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
@@ -20,7 +20,7 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
 
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
-export default class App extends Component {
+export default class Home extends Component {
   static propTypes = {
     getEvents: PropTypes.func.isRequired,
     getRepos: PropTypes.func.isRequired,
@@ -36,7 +36,7 @@ export default class App extends Component {
   }
   render () {
     return (
-      <div styleName='app'>
+      <div styleName='home'>
         <Header />
       </div>
     )

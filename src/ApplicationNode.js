@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Provider} from 'react-redux'
 import {Router, Switch, Route} from 'react-router-dom'
 import history from 'services/history'
-import App from './views/App'
+import Routes from './containers/Routes'
 
 export default class ApplicationNode extends Component {
   static propTypes = {
@@ -19,9 +19,7 @@ export default class ApplicationNode extends Component {
       <div className='application-node'>
         <Provider store={store}>
           <Router history={history}>
-            <Switch>
-              <Route exact path='/' component={App} />
-            </Switch>
+            <Routes />
           </Router>
         </Provider>
       </div>
