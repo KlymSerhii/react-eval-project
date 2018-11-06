@@ -4,6 +4,8 @@ import ApplicationNode from './ApplicationNode'
 import {unregister} from './services/registerServiceWorker'
 import store from './services/store'
 
+import './theme/init.scss'
+
 const render = (Component) => {
   ReactDOM.render(
     <Component store={store} />,
