@@ -1,24 +1,25 @@
-$common-padding: 24px;
+@import '../../theme/common';
+
 $card-height: 340px;
 $card-width: 280px;
-$repos-width: 780px;
+$repos-width: 80vw;
 $repos-height: 340px;
 
-$avatar-size: 100px;
+$avatar-size: 150px;
 $avatar-position: ($card-width/2-$avatar-size/2) $common-padding;
 
 $repo-padding: $common-padding;
-$repo-height: ($repos-width - $repo-padding*4)/3;
-$repo-width: ($repos-width - $repo-padding*4)/3;
+$repo-height: ($repos-width - get-vw($repo-padding*4))/4;
+$repo-width: ($repos-width - get-vw($repo-padding*4))/3;
 $repo-position-1: $repo-padding $common-padding;
-$repo-position-2: ($repo-width + $repo-padding*2) $common-padding;
-$repo-position-3: ($repo-width*2 + $repo-padding*3) $common-padding;
+$repo-position-2: ($repo-width + get-vw($repo-padding*2)) $common-padding;
+$repo-position-3: ($repo-width*2 + get-vw($repo-padding*3)) $common-padding;
 
 $desc-line-height: 16px;
 $desc-line-width:230px;
-$desc-line-position-1: $common-padding 240px;
-$desc-line-position-2: $common-padding 200px;
-$desc-line-position-3: $common-padding 160px;
+$desc-line-position-1: $common-padding 260px;
+$desc-line-position-2: $common-padding 220px;
+$desc-line-position-3: $common-padding 180px;
 
 $footer-height: 40px;
 $footer-position: 0 calc(#{$card-height} - #{$footer-height});
@@ -31,7 +32,6 @@ $blur-size: $blur-width calc(#{$card-height} - #{$footer-height});
   height: 100%;
   width: 100%;
   display: flex;
-  justify-content: center;
 }
 
 .sceletonElement {
