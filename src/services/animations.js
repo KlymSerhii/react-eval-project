@@ -1,6 +1,8 @@
 // Core
 import React, {Component} from 'react';
 
+import Transition from 'react-transition-group/Transition';
+
 import TweenMax from 'gsap/TweenMax';
 
 function makeFadeUp(Component, options = { duration: 0.3 }) {
@@ -20,13 +22,14 @@ function makeFadeUp(Component, options = { duration: 0.3 }) {
     }
 
     render () {
+      const {mounted} = this.state;
       return (
         <Transition
           timeOut={1000}
-          in={this.state.mounted}
+          in={mounted}
           unmountOnExit
-          onEnter={node => TweenMax.fromTo(node, options.duration, {y: 100, opacity: 0}, {y: 0, opacity: 1})}
-          addEndListener={(node, done) => {TweenMax.fromTo(node, options.duration, {y: 0, opacity: 1}, {y: -100, opacity: 0, onComplete: done})}
+          onEnter={node => TweenMax.fromTo(node, options.duration, {y: 50, opacity: 0}, {y: 0, opacity: 1})}
+          addEndListener={(node, done) => {TweenMax.fromTo(node, options.duration, {y: mounted ? 50 : 0, opacity: mounted ? 0 : 1}, {y: mounted ? 0 : 50, opacity: mounted ? 1 : 0, onComplete: done})}
         }
         >
           <Component {...this.props} />

@@ -1,0 +1,6 @@
+$common-padding: 24px;
+
+@function get-vw($target) {
+  $vw-context: (1000*.01) * 1px;
+  @return ($target/$vw-context) * 1vw;
+}

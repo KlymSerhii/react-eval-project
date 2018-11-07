@@ -1,0 +1,25 @@
+.tileContainer {
+
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: nowrap;
+  padding: 5px 0;
+}
+
+.stretch {
+  justify-content: space-between;
+}
+
+.description {
+  padding: 5px 0;
+}
+.repoLink {
+  display: inline-block;
+  font-size: 18px;
+  color: cornflowerblue;
+  padding: 5px;
+  padding-left: 0;
+  text-transform: uppercase;
+}

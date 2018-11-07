@@ -25,7 +25,15 @@ body {
     & section {
         width: 100%;
     }
+
 }
+a, a:focus, a:visited {
+  outline-style:none;
+  text-decoration: none;
+  box-shadow:none;
+  border-color:transparent;
+}
+
 
 :global(#root) {
   height: 100%;

@@ -1,3 +1,6 @@
-.home {
+@import '../../theme/common';
 
+.home {
+  display: flex;
+  padding: $common-padding;
 }

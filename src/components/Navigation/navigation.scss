@@ -1,0 +1,15 @@
+.list {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.listItem {
+  padding: 10px;
+  & a {
+    color: black;
+  }
+}
+
+.active a {
+  color: cornflowerblue;
+}

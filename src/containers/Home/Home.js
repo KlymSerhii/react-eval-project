@@ -6,14 +6,19 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {withRouter, Router, Route, Switch} from 'react-router-dom'
 
-import Header from 'components/Header'
+import navLinks from '../../constants/navLinks'
+
 import {getUser} from 'actions/userActions'
 import {getRepos} from 'actions/reposActions'
 import {getEvents} from 'actions/eventsActions'
 import history from '../../services/history'
+import animations from '../../services/animations'
 import ReposScreen from '../Repos/ReposScreen'
 import EventsScreen from '../Events/EventsScreen'
-import LoadingSceleton from '../../components/LoadingSceleton/LoadingSceleton'
+import LoadingSceleton from '../../components/LoadingSceleton'
+import Navigation from '../../components/Navigation'
+import Sidebar from '../../components/Sidebar'
+import UserInfo from '../../components/UserInfo'
 
 const mapStateToProps = state => ({
   repos: state.repos,
@@ -26,7 +31,7 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
   getRepos,
   getUser
 }, dispatch))
-
+@animations.fadeUp
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Home extends Component {
@@ -42,15 +47,19 @@ export default class Home extends Component {
     repos: PropTypes.object.isRequired,
     getEvents: PropTypes.func.isRequired,
     getRepos: PropTypes.func.isRequired,
-    getUser: PropTypes.func.isRequired
-    // location: PropTypes.object
+    getUser: PropTypes.func.isRequired,
+    location: PropTypes.object
   }
 
   componentDidMount () {
-    const {getUser, getRepos, getEvents} = this.props
+    const {getUser, getRepos, getEvents, location} = this.props
     getUser()
     getRepos()
     getEvents()
+
+    if (location.pathname === '/') {
+      history.push('/repositories')
+    }
   }
   render () {
     const {user, events, repos} = this.props
@@ -59,21 +68,26 @@ export default class Home extends Component {
 
     return (
       <div styleName='home'>
-        <Header />
-        <Router history={history}>
-          <Switch>
-            <Route
-              exact
-              path='/repositories'
-              component={() => <ReposScreen />}
-            />
-            <Route
-              exact
-              path='/events'
-              component={() => <EventsScreen />}
-            />
-          </Switch>
-        </Router>
+        <Sidebar>
+          <UserInfo user={user.data} />
+        </Sidebar>
+        <div>
+          <Navigation links={navLinks} currentScreen={this.props.location.pathname} />
+          <Router history={history}>
+            <Switch>
+              <Route
+                exact
+                path='/repositories'
+                component={() => <ReposScreen repos={repos.data} />}
+              />
+              <Route
+                exact
+                path='/events'
+                component={() => <EventsScreen events={events.data} />}
+              />
+            </Switch>
+          </Router>
+        </div>
       </div>
     )
   }
