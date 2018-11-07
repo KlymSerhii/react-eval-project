@@ -71,7 +71,7 @@ export default class Home extends Component {
         <Sidebar>
           <UserInfo user={user.data} />
         </Sidebar>
-        <div>
+        <div styleName='mainPart'>
           <Navigation links={navLinks} currentScreen={this.props.location.pathname} />
           <Router history={history}>
             <Switch>
