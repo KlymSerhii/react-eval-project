@@ -1,0 +1,33 @@
+.userInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.userInfoName {
+  font-size: 16px;
+  padding: 5px 0;
+  text-transform: uppercase;
+}
+
+.userInfoBio {
+  padding: 10px 0;
+}
+
+.userInfoAdditional {
+  margin-right: auto;
+}
+
+.userInfoAvatar {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.userInfoRow {
+  display: flex;
+  padding: 5px 0;
+  flex-wrap: nowrap;
+}
