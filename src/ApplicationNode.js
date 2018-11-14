@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {Provider} from 'react-redux'
 import {Router} from 'react-router-dom'
 import history from 'services/history'
-import Routes from './containers/Routes'
+import Home from './containers/Home'
 
 export default class ApplicationNode extends Component {
   static propTypes = {
@@ -12,13 +12,19 @@ export default class ApplicationNode extends Component {
 
   state = {}
 
+  componentDidMount () {
+    if (history.location.pathname === '/') {
+      history.push('/repositories')
+    }
+  }
+
   render () {
     const {store} = this.props
 
     return (
         <Provider store={store}>
           <Router history={history}>
-            <Routes />
+            <Home />
           </Router>
         </Provider>
     )

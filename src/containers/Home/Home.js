@@ -4,7 +4,7 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
-import {withRouter, Router, Route, Switch} from 'react-router-dom'
+import {withRouter, Router} from 'react-router-dom'
 
 import navLinks from '../../constants/navLinks'
 
@@ -13,12 +13,11 @@ import {getRepos} from 'actions/reposActions'
 import {getEvents} from 'actions/eventsActions'
 import history from '../../services/history'
 import {fadeUp} from '../../hocs/animationsHoc'
-import ReposScreen from '../Repos/ReposScreen'
-import EventsScreen from '../Events/EventsScreen'
 import LoadingSceleton from '../../components/LoadingSceleton'
 import Navigation from '../../components/Navigation'
 import Sidebar from '../../components/Sidebar'
 import UserInfo from '../../components/UserInfo'
+import {HomeRoutes} from '../../containers/Routes'
 
 const mapStateToProps = state => ({
   repos: state.repos,
@@ -49,21 +48,17 @@ export default class Home extends Component {
     getEvents: PropTypes.func.isRequired,
     getRepos: PropTypes.func.isRequired,
     getUser: PropTypes.func.isRequired,
-    location: PropTypes.object
+    match: PropTypes.object
   }
 
   componentDidMount () {
-    const {getUser, getRepos, getEvents, location} = this.props
+    const {getUser, getRepos, getEvents} = this.props
     getUser()
     getRepos()
     getEvents()
-
-    if (location.pathname === '/') {
-      history.push('/repositories')
-    }
   }
   render () {
-    const {user, events, repos} = this.props
+    const {user, events, repos, match} = this.props
 
     if (user.fetching || events.fetching || repos.fetching) return <LoadingSceleton />
 
@@ -73,20 +68,9 @@ export default class Home extends Component {
           <UserInfo user={user.data} />
         </Sidebar>
         <div styleName='mainPart'>
-          <Navigation links={navLinks} currentScreen={this.props.location.pathname} />
+          <Navigation links={navLinks} currentScreen={match.url} />
           <Router history={history}>
-            <Switch>
-              <Route
-                exact
-                path='/repositories'
-                component={() => <ReposScreen repos={repos.data} />}
-              />
-              <Route
-                exact
-                path='/events'
-                component={() => <EventsScreen events={events.data} />}
-              />
-            </Switch>
+            <HomeRoutes repos={repos} events={events} />
           </Router>
         </div>
       </div>
