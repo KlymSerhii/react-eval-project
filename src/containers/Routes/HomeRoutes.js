@@ -1,19 +1,30 @@
+import React from 'react'
 import {Route, Switch} from 'react-router-dom'
 import ReposScreen from '../Repos/ReposScreen'
 import EventsScreen from '../Events/EventsScreen'
-import React from 'react'
+import propsGetter from '../../services/propsGetter'
+
+const routes = [
+  {
+    path: '/repositories',
+    component: ReposScreen,
+    propsGetter: propsGetter('repos')
+  },
+  {
+    path: '/events',
+    component: EventsScreen,
+    propsGetter: propsGetter('events')
+  }
+]
 
 export const HomeRoutes = (props) => (
   <Switch>
-    <Route
-      exact
-      path='/repositories'
-      render={(routerProps) => <ReposScreen {...routerProps} repos={props.repos.data} />}
-    />
-    <Route
-      exact
-      path='/events'
-      render={(routerProps) => <EventsScreen {...routerProps} events={props.events.data} />}
-    />
+    {routes.map((route) => (
+      <Route
+        key={route.path}
+        path={route.path}
+        render={(routerProps) => <route.component {...routerProps} {...route.propsGetter(props)} />}
+      />
+    ))}
   </Switch>
 )
