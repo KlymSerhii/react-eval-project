@@ -1,16 +1,14 @@
 // Core
-import React from 'react';
+import React, {Component} from 'react'
+import Transition from 'react-transition-group/Transition'
+import TweenMax from 'gsap/TweenMax'
 
-import Transition from 'react-transition-group/Transition';
-
-import TweenMax from 'gsap/TweenMax';
-
-const animatedComponentFactory = (animationHoc) => (options = { duration: 0.3 }) => (Component) => {
-  return animationHoc(Component, options)
+const animatedComponentFactory = (animationHoc) => (options = { duration: 0.3 }) => (WrappedComponent) => {
+  return animationHoc(WrappedComponent, options)
 }
 
-const fadeUpHoc = (Component, options = { duration: 0.3 }) => {
-  return class FadesUp extends React.Component {
+const fadeUpHoc = (WrappedComponent, options = { duration: 0.3 }) => {
+  return class FadesUp extends Component {
 
     constructor (props) {
       super(props);
@@ -41,7 +39,7 @@ const fadeUpHoc = (Component, options = { duration: 0.3 }) => {
             }
           }
         >
-          <Component {...this.props} />
+          <WrappedComponent {...this.props} />
         </Transition>
       );
     }
@@ -51,6 +49,6 @@ const fadeUpHoc = (Component, options = { duration: 0.3 }) => {
 
 const fadeUp = animatedComponentFactory(fadeUpHoc)
 
-export { fadeUp };
+export { fadeUp }
 
 
