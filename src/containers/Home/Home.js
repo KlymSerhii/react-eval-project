@@ -1,6 +1,6 @@
 import './home.scss'
 
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
@@ -34,7 +34,7 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
 @fadeUp()
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
-export default class Home extends Component {
+export default class Home extends PureComponent {
   static defaultProps = {
     user: {},
     events: {},
@@ -48,7 +48,7 @@ export default class Home extends Component {
     getEvents: PropTypes.func.isRequired,
     getRepos: PropTypes.func.isRequired,
     getUser: PropTypes.func.isRequired,
-    match: PropTypes.object
+    location: PropTypes.object
   }
 
   componentDidMount () {
@@ -58,7 +58,7 @@ export default class Home extends Component {
     getEvents()
   }
   render () {
-    const {user, events, repos, match} = this.props
+    const {user, events, repos, location} = this.props
 
     if (user.fetching || events.fetching || repos.fetching) return <LoadingSceleton />
 
@@ -68,9 +68,9 @@ export default class Home extends Component {
           <UserInfo user={user.data} />
         </Sidebar>
         <div styleName='mainPart'>
-          <Navigation links={navLinks} currentScreen={match.url} />
+          <Navigation links={navLinks} currentScreen={location.pathname} />
           <Router history={history}>
-            <HomeRoutes repos={repos} events={events} />
+            <HomeRoutes repos={repos.data} events={events.data} />
           </Router>
         </div>
       </div>

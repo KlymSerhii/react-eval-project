@@ -1,19 +1,12 @@
 import './repoTile.scss'
 
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../Icon'
 import { faUser, faCode, faDiagnoses, faStar, faCodeBranch } from '@fortawesome/free-solid-svg-icons'
 
-export default class RepoTile extends Component {
-
-  static propTypes = {
-    repo: PropTypes.object
-  }
-
-  render () {
-    const {repo} = this.props;
+const RepoTile = ({repo}) => {
     return (
       <div styleName='tileContainer'>
         <div>
@@ -60,5 +53,10 @@ export default class RepoTile extends Component {
         </div>
       </div>
     )
-  }
 }
+
+RepoTile.propTypes = {
+  repo: PropTypes.object
+}
+
+export default RepoTile

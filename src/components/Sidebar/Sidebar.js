@@ -1,18 +1,16 @@
 import './sidebar.scss';
 
-import React, {Component} from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 
-
-export default class Sidebar extends Component {
-
-  static propTypes = {
-    children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired
-  }
-
-  render () {
-    return (
-      <div styleName='sidebarContainer'>{this.props.children}</div>
-    )
-  }
+const Sidebar = ({children}) => {
+  return (
+    <div styleName='sidebarContainer'>{children}</div>
+  )
 }
+
+Sidebar.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.node, PropTypes.arrayOf(PropTypes.node)]).isRequired
+}
+
+export default Sidebar

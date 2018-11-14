@@ -1,6 +1,6 @@
 import './userInfo.scss';
 
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
 import Icon from '../Icon'
@@ -8,14 +8,13 @@ import {faUsers, faArchive} from '@fortawesome/free-solid-svg-icons'
 import {fadeUp} from '../../hocs/animationsHoc'
 
 @fadeUp()
-export default class UserInfo extends Component {
+export default class UserInfo extends PureComponent {
   static propTypes = {
     user: PropTypes.object.isRequired
   }
 
   render () {
     const {bio, name, avatar_url: avatarUrl, public_repos, followers} = this.props.user
-
     return (
       <div styleName='userInfoContainer'>
           <img styleName='userInfoAvatar'src={avatarUrl} />

@@ -1,18 +1,14 @@
 import './loadingSceleton.scss'
 
-import React, {Component} from 'react'
+import React from 'react'
 
-export default class LoadingSceleton extends Component {
-  static propTypes = {}
-
-  state = {}
-
-  render () {
+const LoadingSceleton = () => {
     return (
       <div styleName='sceleton'>
         <div styleName='sceletonElement userPlate'></div>
         <div styleName='sceletonElement reposPlate'></div>
       </div>
     )
-  }
 }
+
+export default LoadingSceleton

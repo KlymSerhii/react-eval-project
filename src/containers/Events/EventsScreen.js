@@ -1,8 +1,7 @@
 import './eventsScreen.scss'
 
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
-
 
 import Graphic from '../../components/Graphic'
 import {getUser} from 'actions/userActions'
@@ -11,7 +10,7 @@ import {getEvents} from 'actions/eventsActions'
 import {fadeUp} from '../../hocs/animationsHoc'
 
 @fadeUp()
-export default class EventsScreen extends Component {
+export default class EventsScreen extends PureComponent {
   static defaultProps = {
     events: [],
     colorsArr: [
@@ -108,7 +107,7 @@ export default class EventsScreen extends Component {
   }
 
   render () {
-    const {events, colorsArr} = this.props;
+    const {events, colorsArr} = this.props
     const eventsByDate = this.getEventsByDate()
     const legendData = this.getLegendData()
     if (events.length < 1) return (<div>No events provided.</div>)

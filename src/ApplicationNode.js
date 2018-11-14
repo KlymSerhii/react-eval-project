@@ -10,8 +10,6 @@ export default class ApplicationNode extends Component {
     store: PropTypes.object.isRequired
   }
 
-  state = {}
-
   componentDidMount () {
     if (history.location.pathname === '/') {
       history.push('/repositories')

@@ -1,12 +1,12 @@
 import './navigation.scss'
 
-import React from 'react'
+import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
 import {Link} from 'react-router-dom'
 
 
-export default class Navigation extends React.PureComponent {
+export default class Navigation extends PureComponent {
   static propTypes = {
     currentScreen: PropTypes.string.isRequired,
     links: PropTypes.arrayOf(PropTypes.shape({
