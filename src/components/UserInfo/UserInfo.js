@@ -5,9 +5,9 @@ import PropTypes from 'prop-types'
 
 import Icon from '../Icon'
 import {faUsers, faArchive} from '@fortawesome/free-solid-svg-icons'
-import animations from '../../services/animations'
+import {fadeUp} from '../../hocs/animationsHoc'
 
-@animations.fadeUp
+@fadeUp()
 export default class UserInfo extends Component {
   static propTypes = {
     user: PropTypes.object.isRequired

@@ -12,7 +12,7 @@ import {getUser} from 'actions/userActions'
 import {getRepos} from 'actions/reposActions'
 import {getEvents} from 'actions/eventsActions'
 import history from '../../services/history'
-import animations from '../../services/animations'
+import {fadeUp} from '../../hocs/animationsHoc'
 import ReposScreen from '../Repos/ReposScreen'
 import EventsScreen from '../Events/EventsScreen'
 import LoadingSceleton from '../../components/LoadingSceleton'
@@ -31,7 +31,8 @@ const mapDispatchToProps = dispatch => (bindActionCreators({
   getRepos,
   getUser
 }, dispatch))
-@animations.fadeUp
+
+@fadeUp()
 @withRouter
 @connect(mapStateToProps, mapDispatchToProps)
 export default class Home extends Component {

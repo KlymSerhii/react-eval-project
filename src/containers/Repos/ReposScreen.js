@@ -8,9 +8,9 @@ import RepoTile from 'components/RepoTile'
 import {getUser} from 'actions/userActions'
 import {getRepos} from 'actions/reposActions'
 import {getEvents} from 'actions/eventsActions'
-import animations from '../../services/animations'
+import {fadeUp} from '../../hocs/animationsHoc'
 
-@animations.fadeUp
+@fadeUp()
 export default class ReposScreen extends Component {
   static propTypes = {
     repos: PropTypes.array.isRequired

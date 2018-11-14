@@ -8,9 +8,9 @@ import Graphic from '../../components/Graphic'
 import {getUser} from 'actions/userActions'
 import {getRepos} from 'actions/reposActions'
 import {getEvents} from 'actions/eventsActions'
-import animations from '../../services/animations'
+import {fadeUp} from '../../hocs/animationsHoc'
 
-@animations.fadeUp
+@fadeUp()
 export default class EventsScreen extends Component {
   static defaultProps = {
     events: [],
