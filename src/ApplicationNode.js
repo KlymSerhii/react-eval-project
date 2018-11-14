@@ -20,11 +20,11 @@ export default class ApplicationNode extends Component {
     const {store} = this.props
 
     return (
-        <Provider store={store}>
-          <Router history={history}>
-            <Home />
-          </Router>
-        </Provider>
+      <Provider store={store}>
+        <Router history={history}>
+          <Home />
+        </Router>
+      </Provider>
     )
   }
 }

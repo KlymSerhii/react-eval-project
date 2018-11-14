@@ -4,9 +4,6 @@ import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
 import Graphic from '../../components/Graphic'
-import {getUser} from 'actions/userActions'
-import {getRepos} from 'actions/reposActions'
-import {getEvents} from 'actions/eventsActions'
 import {fadeUp} from '../../hocs/animationsHoc'
 
 @fadeUp()
@@ -34,7 +31,7 @@ export default class EventsScreen extends PureComponent {
   }
 
   getLegendData = () => {
-    const {colorsArr} = this.props;
+    const {colorsArr} = this.props
     const keys = this.getUniqueEventTypes()
 
     return keys.map((key, i) => ({key: key.split(/(?=[A-Z])/).join(' '), color: colorsArr[i]}))
@@ -53,7 +50,6 @@ export default class EventsScreen extends PureComponent {
     return [...uniqueKeys.values()]
   }
 
-
   getUniqueDates () {
     const {events} = this.props
     const dateMap = new Set()
@@ -68,9 +64,8 @@ export default class EventsScreen extends PureComponent {
     return [...dateMap]
   }
 
-
   getEventsByDate () {
-    const {events} = this.props;
+    const {events} = this.props
     const uniqueKeys = this.getUniqueEventTypes()
     const uniqueDates = this.getUniqueDates()
     const outData = []
@@ -113,7 +108,7 @@ export default class EventsScreen extends PureComponent {
     if (events.length < 1) return (<div>No events provided.</div>)
     return (
       <div styleName='eventsScreenContainer'>
-        <Graphic data={eventsByDate} colors={colorsArr} legend={legendData}/>
+        <Graphic data={eventsByDate} colors={colorsArr} legend={legendData} />
       </div>
     )
   }

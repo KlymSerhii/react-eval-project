@@ -1,4 +1,4 @@
-import './userInfo.scss';
+import './userInfo.scss'
 
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
@@ -17,21 +17,21 @@ export default class UserInfo extends PureComponent {
     const {bio, name, avatar_url: avatarUrl, public_repos, followers} = this.props.user
     return (
       <div styleName='userInfoContainer'>
-          <img styleName='userInfoAvatar'src={avatarUrl} />
-          <div styleName='userInfoName'>{name}</div>
-          <div styleName='userInfoBio'>
-            <p>{bio}</p>
+        <img styleName='userInfoAvatar' src={avatarUrl} />
+        <div styleName='userInfoName'>{name}</div>
+        <div styleName='userInfoBio'>
+          <p>{bio}</p>
+        </div>
+        <div styleName='userInfoAdditional'>
+          <div styleName='userInfoRow'>
+            <Icon icon={faArchive} />
+            <p>{public_repos}</p>
           </div>
-          <div styleName='userInfoAdditional'>
-            <div styleName='userInfoRow'>
-              <Icon icon={faArchive} />
-              <p>{public_repos}</p>
-            </div>
-            <div styleName='userInfoRow'>
-              <Icon icon={faUsers} />
-              <p>{followers}</p>
-            </div>
+          <div styleName='userInfoRow'>
+            <Icon icon={faUsers} />
+            <p>{followers}</p>
           </div>
+        </div>
       </div>
     )
   }

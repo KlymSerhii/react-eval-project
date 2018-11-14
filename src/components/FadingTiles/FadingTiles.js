@@ -3,9 +3,9 @@ import './fadingTilles.scss'
 import React, {PureComponent} from 'react'
 import PropTypes from 'prop-types'
 
-import TimelineLite from 'gsap/TimelineLite';
+import TimelineLite from 'gsap/TimelineLite'
 
-export default class FadingTiles extends PureComponent{
+export default class FadingTiles extends PureComponent {
 
   static propTypes = {
     tileComponent: PropTypes.func.isRequired,
@@ -16,14 +16,14 @@ export default class FadingTiles extends PureComponent{
     items: []
   }
 
-  constructor(props){
+  constructor (props) {
     super(props)
     this.el = {}
     this.tl = new TimelineLite()
   }
 
-  componentDidMount(){
-    for(let i=0; i < Object.keys(this.el).length; i++){
+  componentDidMount () {
+    for (let i = 0; i < Object.keys(this.el).length; i++) {
       this.tl.to(this.el[i], .5, {
         x: -10,
         opacity: 1
@@ -35,16 +35,16 @@ export default class FadingTiles extends PureComponent{
     const {items, tileComponent} = this.props
     const TileComponent = tileComponent
     return items.map((item, i) => (
-        <div styleName='tileItemContainer' ref={r => this.el[i] = r} key={i}>
-          <div styleName='tileItem'><TileComponent {...item} />
+          <div styleName='tileItemContainer' ref={r => this.el[i] = r} key={i}>
+            <div styleName='tileItem'><TileComponent {...item} />
+            </div>
           </div>
-        </div>
       )
     )
   }
 
-  render(){
-    return(
+  render () {
+    return (
       <div styleName='tileItemsContainer'>
         {this.renderTileItems()}
       </div>
